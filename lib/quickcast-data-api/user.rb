@@ -9,4 +9,6 @@ class User < Sequel::Model
     validates_format /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i, :email
     validates_unique :email
   end
+
+  one_to_many :apps
 end

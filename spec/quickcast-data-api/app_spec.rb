@@ -14,6 +14,7 @@ describe App do
   describe "when created" do
     it { should respond_to(:client_id) }
     it { should respond_to(:password) }
+    it { should respond_to(:user) }
 
     it { should be_valid }
   end
@@ -40,7 +41,8 @@ describe App do
     it do
       @app.password = "bar"
       expect(@app).to_not be_valid
-    end  end
+    end
+  end
 
   after(:each) do
     App.db[:apps].delete

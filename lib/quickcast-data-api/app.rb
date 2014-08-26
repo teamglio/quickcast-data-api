@@ -8,4 +8,6 @@ class App < Sequel::Model
     validates_presence :client_id
     validates_unique :client_id
   end
+
+  many_to_one :user
 end
