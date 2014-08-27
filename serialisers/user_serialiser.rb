@@ -10,6 +10,7 @@ class UserSerialiser < Oat::Serializer
     link :apps, app_links unless app_links.empty?
     properties do |property|
       property.id(item.id.to_s)
+      property.name(item.name.to_s)
       property.email(item.email)
     end
   end

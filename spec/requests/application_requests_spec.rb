@@ -23,8 +23,8 @@ describe 'ApplicationController' do
       expected_response = {
         errors: [
           {
-            status: 404,
-            title: "Sinatra::NotFound"
+            status: '404',
+            title: "Not found"
           }
         ]
       }.to_json
@@ -47,7 +47,15 @@ describe 'ApplicationController' do
     end
     it "should render 'not authorised'" do
       get 'v1/'
-      expect(last_response.body).to eq "Not authorised\n"
+      expected_response = {
+        errors: [
+          {
+            status: '401',
+            title: "Not authorised"
+          }
+        ]
+      }.to_json
+      expect(last_response.body).to eq expected_response
     end
   end
 

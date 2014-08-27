@@ -2,15 +2,14 @@ require 'sinatra/base'
 require 'sinatra/json'
 require_relative '../serialisers/error_serialiser.rb'
 require_relative '../helpers/versioned_routes.rb'
-require_relative '../helpers/api_authorisation.rb'
+require_relative '../helpers/application_helpers.rb'
 
 class ApplicationController < Sinatra::Base
 
-  set :version, 'v1'
-
-  helpers APIAuthorisationHelper
-
+  helpers ApplicationHelpers
   register VersionedRoutes
+
+  set :version, 'v1'
 
   run! if app_file == $0
 
@@ -20,8 +19,11 @@ class ApplicationController < Sinatra::Base
   end
 
   not_found do
-    protected!
-    json ErrorSerialiser.new(env['sinatra.error']).to_hash
+    json render_error(404, "Not found")
+  end
+
+  error 401 do
+    json render_error(401, "Not authorised")
   end
 
 end

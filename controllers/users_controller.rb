@@ -17,4 +17,21 @@ class UsersController < ApplicationController
     json UserSerialiser.new(user).to_hash
   end
 
+  post '/users' do
+    protected!
+    user = User.new(
+      :name => params[:name],
+      :email => params[:email],
+      :password => params[:password],
+      :password_confirmation => params[:password_confirmation]
+      )
+    if user.valid?
+      user.save
+      status 201
+      json UserSerialiser.new(user).to_hash
+    else
+      error 400, json(render_error(400, "Invalid params", user.errors))
+    end
+  end
+
 end

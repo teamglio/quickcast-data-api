@@ -7,8 +7,9 @@ class ErrorSerialiser < Oat::Serializer
   schema do
     type "error"
     properties do |property|
-      property.status(item.http_status)
-      property.title(item.message)
+      property.status(item[:status].to_s)
+      property.title(item[:title])
+      property.description(item[:description]) if item[:description]
     end
   end
 

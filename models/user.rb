@@ -6,7 +6,7 @@ class User < Sequel::Model
   plugin :secure_password
   def validate
     super
-    validates_presence [:email]
+    validates_presence [:email, :name]
     validates_format /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i, :email
     validates_unique :email
   end
