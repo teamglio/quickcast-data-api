@@ -1,4 +1,5 @@
 require 'sequel'
+Sequel.connect(ENV['DATABASE_URL'])
 
 class User < Sequel::Model
   plugin :validation_helpers

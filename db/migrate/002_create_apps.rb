@@ -4,6 +4,7 @@ Sequel.migration do
       primary_key :id
       String :client_id
       String :password_digest
+      String :user_id
     end
   end
 

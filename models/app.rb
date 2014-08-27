@@ -1,4 +1,5 @@
 require 'sequel'
+Sequel.connect(ENV['DATABASE_URL'])
 
 class App < Sequel::Model
   plugin :secure_password
