@@ -1,4 +1,9 @@
-require_relative 'models/models.rb'
-require_relative 'controllers/controllers.rb'
+require_relative 'endpoints/application_endpoints.rb'
+require_relative 'endpoints/user_endpoints.rb'
+require_relative 'endpoints/activation_attempt_endpoints.rb'
 
-run UsersController
+map '/' do
+  use ActivationAttemptEndpoints
+  use UserEndpoints
+  run ApplicationEndpoints
+end

@@ -45,7 +45,7 @@ describe App do
   end
 
   after(:each) do
-    App.db[:apps].delete
+    DatabaseCleaner.clean
   end
 
 end

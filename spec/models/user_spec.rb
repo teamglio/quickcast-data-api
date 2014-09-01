@@ -16,6 +16,7 @@ describe User do
     it { should respond_to(:email) }
     it { should respond_to(:password) }
     it { should respond_to(:name) }
+    it { should respond_to(:active) }
     it { should respond_to(:apps) }
 
     it { should be_valid }
@@ -61,6 +62,7 @@ describe User do
   describe "when password is not present" do
     it do
       @user.password = " "
+      @user.password_confirmation = " "
       expect(@user).to_not be_valid
     end
   end
@@ -72,7 +74,7 @@ describe User do
     end  end
 
   after(:each) do
-    User.db[:users].delete
+    DatabaseCleaner.clean
   end
 
 end

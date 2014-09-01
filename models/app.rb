@@ -2,8 +2,9 @@ require 'sequel'
 Sequel.connect(ENV['DATABASE_URL'])
 
 class App < Sequel::Model
-  plugin :secure_password
+  plugin :timestamps
   plugin :validation_helpers
+  plugin :secure_password
   def validate
     super
     validates_presence :client_id

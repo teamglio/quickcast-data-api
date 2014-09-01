@@ -1,17 +1,15 @@
 require_relative '../spec_helper.rb'
 include Rack::Test::Methods
 
-  def app
-    ApplicationController.new
+describe 'ApplicationEndpoints' do
+
+  before do
+    def app
+      ApplicationEndpoints.new
+    end
   end
 
-describe 'ApplicationController' do
-
   describe "when not found" do
-
-    before do
-      authorize "admin", "admin"
-    end
 
     it "should respond with a 404 status" do
       get '/v1/not-found'
